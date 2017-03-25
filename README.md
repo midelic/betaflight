@@ -13,6 +13,18 @@ This fork differs from baseflight in that it attempts to use modern software dev
 
 The MultiWii software, from which baseflight originated, violates many good software development best-practices. Hopefully this fork will go some way to address them. If you see any bad code in this fork please immediately raise an issue so it can be fixed, or better yet submit a pull request.
 
+
+
+## IMPORTANT
+
+**Main  contribution of this fork is the FRSKY RX compatible code added to betaflight core**
+**No more PPM SBUS ot other serial RX.No more aditional mcu chip added to the FC hardware.**
+**One CC2500 module connected to STM32 mcu which communicate via spi.Feature RSSI and VBAT telemetry**
+**Atm it is set for STM32F103CB Naze32 framework and brushed motors.The target setup is set in target/MIDELIC folder in target.h**
+
+
+
+
 ## Additional Features
 
 Cleanflight also has additional features not found in baseflight.
