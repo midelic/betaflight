@@ -18,9 +18,9 @@ The MultiWii software, from which baseflight originated, violates many good soft
 ## IMPORTANT
 
 **Main  contribution of this fork is the FRSKY RX compatible code added to betaflight core**
-**No more PPM SBUS ot other serial RX.No more aditional mcu chip added to the FC hardware.**
+**No more PPM ,RX-PWM ,SBUS ot other serial RX.No more aditional mcu chip added to the FC hardware.**
 **One CC2500 module connected to STM32 mcu which communicate via spi.Feature RSSI and VBAT telemetry**
-**Atm it is set for STM32F103CB Naze32 framework and brushed motors.The target setup is set in target/MIDELIC folder in target.h**
+**The target setup is set in target.h.Thsts are two folders one for F1 chip MIDELICF1 and another MIDELICF3 for F3 chip**
 
 
 
