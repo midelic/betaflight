@@ -2,6 +2,14 @@
 
 ![Betaflight](https://camo.githubusercontent.com/8178215d6cb90842dc95c9d437b1bdf09b2d57a7/687474703a2f2f7374617469632e726367726f7570732e6e65742f666f72756d732f6174746163686d656e74732f362f312f302f332f372f362f61393038383930302d3232382d62665f6c6f676f2e6a7067)
 
+## IMPORTANT
+
+**Main  contribution of this fork is the FRSKY RX compatible code added to betaflight core**
+**No more PPM ,RX-PWM ,SBUS ot other serial RX.No more aditional mcu chip added to the FC hardware.**
+**One CC2500 module connected to STM32 mcu which communicate via spi.Feature RSSI and VBAT telemetry**
+**The target setup is set in target.h.Thsts are two folders one for F1 chip MIDELICF1 and another MIDELICF3 for F3 chip**
+
+
 Clean-code version of baseflight flight-controller - flight controllers are used to fly multi-rotor craft and fixed wing craft.
 
 This fork differs from baseflight in that it attempts to use modern software development practices which result in:
@@ -12,18 +20,6 @@ This fork differs from baseflight in that it attempts to use modern software dev
 4. easier to re-use code though code de-coupling and modularisation.
 
 The MultiWii software, from which baseflight originated, violates many good software development best-practices. Hopefully this fork will go some way to address them. If you see any bad code in this fork please immediately raise an issue so it can be fixed, or better yet submit a pull request.
-
-
-
-## IMPORTANT
-
-**Main  contribution of this fork is the FRSKY RX compatible code added to betaflight core**
-**No more PPM ,RX-PWM ,SBUS ot other serial RX.No more aditional mcu chip added to the FC hardware.**
-**One CC2500 module connected to STM32 mcu which communicate via spi.Feature RSSI and VBAT telemetry**
-**The target setup is set in target.h.Thsts are two folders one for F1 chip MIDELICF1 and another MIDELICF3 for F3 chip**
-
-
-
 
 ## Additional Features
 
