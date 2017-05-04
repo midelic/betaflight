@@ -3,6 +3,18 @@
 ![BetaFlight](https://raw.githubusercontent.com/wiki/betaflight/betaflight/images/betaflight/bf_logo.png)
 
 Betaflight is flight controller software (firmware) used to fly multi-rotor craft and fixed wing craft.
+Clean-code version of baseflight flight-controller - flight controllers are used to fly multi-rotor craft and fixed wing craft.
+
+This fork differs from baseflight in that it attempts to use modern software development practices which result in:
+
+1. greater reliability through code robustness and automated testing. 
+2. easier maintenance through code cleanliness.
+3. easier to develop new features. 
+4. easier to re-use code though code de-coupling and modularisation.
+
+The MultiWii software, from which baseflight originated, violates many good software development best-practices. Hopefully this fork will go some way to address them. If you see any bad code in this fork please immediately raise an issue so it can be fixed, or better yet submit a pull request.
+
+## Additional Features
 
 This fork differs from Baseflight and Cleanflight in that it focuses on flight performance, leading-edge feature additions, and wide target support.
 

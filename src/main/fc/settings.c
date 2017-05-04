@@ -62,6 +62,7 @@
 
 #include "rx/rx.h"
 #include "rx/spektrum.h"
+#include "rx/frsky_d.h"
 
 #include "sensors/acceleration.h"
 #include "sensors/barometer.h"
@@ -729,7 +730,64 @@ const clivalue_t valueTable[] = {
 #endif
 
 #ifdef USE_ESC_SENSOR
-    { "esc_sensor_halfduplex",          VAR_UINT8  | MASTER_VALUE | MODE_LOOKUP, .config.lookup = { TABLE_OFF_ON }, PG_ESC_SENSOR_CONFIG, offsetof(escSensorConfig_t, halfDuplex) },
+    { "esc_sensor_halfduplex",      VAR_UINT8   | MASTER_VALUE | MODE_LOOKUP, .config.lookup = { TABLE_OFF_ON }, PG_ESC_SENSOR_CONFIG, offsetof(escSensorConfig_t, halfDuplex) },
+#endif
+
+#ifdef USE_RX_FRSKYD
+    { "frsky_d_autobind",             VAR_UINT8   | MASTER_VALUE, .config.lookup = { TABLE_OFF_ON }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, autoBind) },
+    { "frsky_d_tx_id0",             VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindTxId[0]) },
+    { "frsky_d_tx_id1",             VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindTxId[1]) },
+    { "frsky_d_offset",             VAR_INT8    | MASTER_VALUE, .config.minmax = { -127, 127 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindOffset) },
+    { "frsky_d_bind_hop_data0",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[0]) },
+    { "frsky_d_bind_hop_data1",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[1]) },
+    { "frsky_d_bind_hop_data2",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[2]) },
+    { "frsky_d_bind_hop_data3",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[3]) },
+    { "frsky_d_bind_hop_data4",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[4]) },
+    { "frsky_d_bind_hop_data5",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[5]) },
+    { "frsky_d_bind_hop_data6",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[6]) },
+    { "frsky_d_bind_hop_data7",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[7]) },
+    { "frsky_d_bind_hop_data8",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[8]) },
+    { "frsky_d_bind_hop_data9",          VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[9]) },
+    { "frsky_d_bind_hop_data10",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[10]) },
+    { "frsky_d_bind_hop_data11",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[11]) },
+    { "frsky_d_bind_hop_data12",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[12]) },
+    { "frsky_d_bind_hop_data13",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[13]) },
+    { "frsky_d_bind_hop_data14",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[14]) },
+    { "frsky_d_bind_hop_data15",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[15]) },
+    { "frsky_d_bind_hop_data16",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[16]) },
+    { "frsky_d_bind_hop_data17",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[17]) },
+    { "frsky_d_bind_hop_data18",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[18]) },
+    { "frsky_d_bind_hop_data19",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[19]) },
+    { "frsky_d_bind_hop_data20",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[20]) },
+    { "frsky_d_bind_hop_data21",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[21]) },
+    { "frsky_d_bind_hop_data22",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[22]) },
+    { "frsky_d_bind_hop_data23",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[23]) },
+    { "frsky_d_bind_hop_data24",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[24]) },
+    { "frsky_d_bind_hop_data25",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[25]) },
+    { "frsky_d_bind_hop_data26",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[26]) },
+    { "frsky_d_bind_hop_data27",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[27]) },
+    { "frsky_d_bind_hop_data28",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[28]) },
+    { "frsky_d_bind_hop_data29",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[29]) },
+    { "frsky_d_bind_hop_data30",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[30]) },
+    { "frsky_d_bind_hop_data31",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[31]) },
+    { "frsky_d_bind_hop_data32",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[32]) },
+    { "frsky_d_bind_hop_data33",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[33]) },
+    { "frsky_d_bind_hop_data34",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[34]) },
+    { "frsky_d_bind_hop_data35",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[35]) },
+    { "frsky_d_bind_hop_data36",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[36]) },
+    { "frsky_d_bind_hop_data37",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[37]) },
+    { "frsky_d_bind_hop_data38",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[38]) },
+    { "frsky_d_bind_hop_data39",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[39]) },
+    { "frsky_d_bind_hop_data40",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[40]) },
+    { "frsky_d_bind_hop_data41",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[41]) },
+    { "frsky_d_bind_hop_data42",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[42]) },
+    { "frsky_d_bind_hop_data43",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[43]) },
+    { "frsky_d_bind_hop_data44",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[44]) },
+    { "frsky_d_bind_hop_data45",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[45]) },
+    { "frsky_d_bind_hop_data46",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[46]) },
+    { "frsky_d_bind_hop_data47",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[47]) },
+    { "frsky_d_bind_hop_data48",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[48]) },
+    { "frsky_d_bind_hop_data49",         VAR_UINT8   | MASTER_VALUE, .config.minmax = { 0, 255 }, PG_FRSKY_D_CONFIG, offsetof(frSkyDConfig_t, bindHopData[49]) },
 #endif
     { "led_inversion",                  VAR_UINT8  | MASTER_VALUE, .config.minmax = { 0, ((1 << STATUS_LED_NUMBER) - 1) }, PG_STATUS_LED_CONFIG, offsetof(statusLedConfig_t, inversion) },
 #ifdef USE_DASHBOARD

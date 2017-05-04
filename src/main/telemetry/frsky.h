@@ -29,3 +29,7 @@ void initFrSkyTelemetry(void);
 void configureFrSkyTelemetryPort(void);
 void freeFrSkyTelemetryPort(void);
 
+#if defined HUB
+extern uint8_t srx_data[64];
+extern uint8_t hub_index;
+#endif

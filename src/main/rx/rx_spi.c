@@ -24,7 +24,11 @@
 
 #include "build/build_config.h"
 
+
 #include "drivers/rx_nrf24l01.h"
+
+#include "drivers/cc2500.h"
+
 
 #include "config/feature.h"
 
@@ -32,12 +36,14 @@
 
 #include "rx/rx.h"
 #include "rx/rx_spi.h"
+
 #include "rx/nrf24_cx10.h"
 #include "rx/nrf24_syma.h"
 #include "rx/nrf24_v202.h"
 #include "rx/nrf24_h8_3d.h"
 #include "rx/nrf24_inav.h"
 
+#include "rx/frsky_d.h"
 
 uint16_t rxSpiRcData[MAX_SUPPORTED_RC_CHANNEL_COUNT];
 STATIC_UNIT_TESTED uint8_t rxSpiPayload[RX_SPI_MAX_PAYLOAD_SIZE];
@@ -53,7 +59,9 @@ static protocolSetRcDataFromPayloadFnPtr protocolSetRcDataFromPayload;
 
 STATIC_UNIT_TESTED uint16_t rxSpiReadRawRC(const rxRuntimeConfig_t *rxRuntimeConfig, uint8_t channel)
 {
+
     BUILD_BUG_ON(NRF24L01_MAX_PAYLOAD_SIZE > RX_SPI_MAX_PAYLOAD_SIZE);
+
     if (channel >= rxRuntimeConfig->channelCount) {
         return 0;
     }
@@ -106,6 +114,23 @@ STATIC_UNIT_TESTED bool rxSpiSetProtocol(rx_spi_protocol_e protocol)
         protocolSetRcDataFromPayload = inavNrf24SetRcDataFromPayload;
         break;
 #endif
+#ifdef USE_RX_FRSKYX
+    case RX_SPI_FRSKYX:
+        protocolInit = frskyX_Rx_Init;
+        protocolDataReceived =frskyX_Rx_DataReceived;
+        protocolSetRcDataFromPayload = frskyX_Rx_SetRCdata;
+        break;
+#endif
+#ifdef USE_RX_FRSKYD
+    case RX_SPI_FRSKYD:
+        protocolInit = frskyD_Rx_Init;
+        protocolDataReceived =frskyD_Rx_DataReceived;
+        protocolSetRcDataFromPayload = frskyD_Rx_SetRCdata;
+        break;
+#endif
+
+
+
     }
     return true;
 }
@@ -142,7 +167,6 @@ bool rxSpiInit(const rxConfig_t *rxConfig, rxRuntimeConfig_t *rxRuntimeConfig)
 
     rxRuntimeConfig->rcReadRawFn = rxSpiReadRawRC;
     rxRuntimeConfig->rcFrameStatusFn = rxSpiFrameStatus;
-
     return ret;
 }
 #endif

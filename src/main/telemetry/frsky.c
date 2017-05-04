@@ -77,6 +77,7 @@ static serialPortConfig_t *portConfig;
 static bool frskyTelemetryEnabled =  false;
 static portSharing_e frskyPortSharing;
 
+extern int16_t telemTemperature1; // FIXME dependency on mw.c
 
 #define CYCLETIME             125
 
@@ -129,28 +130,58 @@ static portSharing_e frskyPortSharing;
 
 static uint32_t lastCycleTime = 0;
 static uint8_t cycleNum = 0;
+#if defined HUB
+extern uint8_t srx_data[64];
+extern uint8_t hub_index;
+#endif
+
 static void sendDataHead(uint8_t id)
 {
-    serialWrite(frskyPort, PROTOCOL_HEADER);
-    serialWrite(frskyPort, id);
+	#if defined HUB
+	srx_data[hub_index++]=PROTOCOL_HEADER;
+    srx_data[hub_index++]=id;
+	#else
+	serialWrite(frskyPort, PROTOCOL_HEADER);
+    serialWrite(frskyPort, id);	
+	#endif
 }
 
 static void sendTelemetryTail(void)
 {
-    serialWrite(frskyPort, PROTOCOL_TAIL);
+	#if defined HUB
+	srx_data[hub_index++]=PROTOCOL_TAIL;
+	#else
+	 serialWrite(frskyPort, PROTOCOL_TAIL);
+	#endif	
 }
 
 static void serializeFrsky(uint8_t data)
 {
     // take care of byte stuffing
     if (data == 0x5e) {
-        serialWrite(frskyPort, 0x5d);
-        serialWrite(frskyPort, 0x3e);
+		#if defined HUB
+		srx_data[hub_index++]=0x5D;
+		srx_data[hub_index++]=0x3E;
+		#else
+	    serialWrite(frskyPort, 0x5d);
+        serialWrite(frskyPort, 0x3e);	
+		#endif	
     } else if (data == 0x5d) {
-        serialWrite(frskyPort, 0x5d);
+		#if defined HUB
+		srx_data[hub_index++]=0x5D;
+		srx_data[hub_index++]=0x3D;
+		#else
+		serialWrite(frskyPort, 0x5d);
         serialWrite(frskyPort, 0x3d);
-    } else
-        serialWrite(frskyPort, data);
+		#endif	
+
+    } else{
+	    #if defined HUB
+		srx_data[hub_index++]=data;
+		#else
+		serialWrite(frskyPort, data);
+		#endif
+		}
 }
 
 static void serialize16(int16_t a)
@@ -524,7 +555,9 @@ void handleFrSkyTelemetry(void)
     lastCycleTime = now;
 
     cycleNum++;
-
+	#if defined HUB
+   hub_index=0;
+	#endif
     // Sent every 125ms
     sendAccel();
     sendVario();
