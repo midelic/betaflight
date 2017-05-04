@@ -88,6 +88,7 @@
 //
 #define PA_LNA//If there is CC2500 with amplifier chip
 #define DIVERSITY
+//#define SWAMPING
 #if defined PA_LNA
 #define TX_EN_PIN              PA0//10
 #define RX_EN_PIN              PA1//11
@@ -116,15 +117,14 @@
 #define DEFAULT_FEATURES FEATURE_MOTOR_STOP
 #define SKIP_SERIAL_PASSTHROUGH
 #define USE_QUAD_MIXER_ONLY
-#if defined PA_LNA
+#if defined PA_LNA || defined DIVERSITY || SWAMPING
 #undef 	PA_LNA//No PA_LNA
 #undef DIVERSITY
+#undef SWAMPING
 #endif
 #endif
-
 //
-#undef USE_SERVOS//has errors
-//#undef USE_CLI//good
+#undef USE_SERVOS
 #undef BLACKBOX
 #undef TELEMETRY
 #undef GPS

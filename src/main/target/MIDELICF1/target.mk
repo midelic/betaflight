@@ -9,6 +9,5 @@ TARGET_SRC = \
             blackbox/blackbox.c \
             blackbox/blackbox_io.c \
             telemetry/telemetry.c \
-			rx/frskyX_rx.c\
 			rx/frskyD_rx.c\
 

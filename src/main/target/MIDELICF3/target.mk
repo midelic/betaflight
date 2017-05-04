@@ -7,6 +7,5 @@ TARGET_SRC = \
 			drivers/cc2500.c\
 			blackbox/blackbox.c \
             blackbox/blackbox_io.c \
-			rx/frskyX_rx.c\
 			rx/frskyD_rx.c\
 

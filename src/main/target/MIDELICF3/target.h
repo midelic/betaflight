@@ -87,14 +87,16 @@
 //
 #define PA_LNA//If there is CC2500 with amplifier chip used her SE4311
 #define DIVERSITY
+//#define SWAMPING
 #if defined PA_LNA
 #define TX_EN_PIN              PB1//
 #define RX_EN_PIN              PB2//
+#endif
 #if defined DIVERSITY
 #define ANT_SEL_PIN            PB11//
 #endif
-//#define SWAMPING
-#endif
+
+
 
 //#define BOARD_HAS_VOLTAGE_DIVIDER
 #define USE_ADC
