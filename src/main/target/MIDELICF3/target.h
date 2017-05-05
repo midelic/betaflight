@@ -22,7 +22,7 @@
 //#define TARGET_BUS_INIT
 
 #define LED0                    PB3
-//#define LED1                    PF0//???
+//#define LED1                    PF0
 //#define LED2                    PC15
 
 //#undef BEEPER
@@ -45,15 +45,14 @@
 #define UART2_TX_PIN            PA14 // PA14 / SWCLK
 #define UART2_RX_PIN            PA15
 
-//#define UART3_TX_PIN            PB10 // PB10 (AF7)
-//#define UART3_RX_PIN            PB11 // PB11 (AF7)
+//#define UART3_TX_PIN            PB10 
+//#define UART3_RX_PIN            PB11 
 
 #define USE_I2C
 #define I2C_DEVICE             (I2CDEV_1)//PB6;PB7(42;43)
 //
 #define USE_SPI
 #define USE_SPI_DEVICE_1
-//#define USE_RX_SOFTSPI
 
 #define USE_RX_CC2500
 
@@ -62,10 +61,12 @@
 #define RX_SPI_INSTANCE         SPI1
 
 #define FRSKY_BIND//bind via CLI serial interface
-//Bind CLI procedure
-//start RX normally 
-//on cli pannel type "bind" and press enter the Frsky led will stay on.
-//start Tx in bind  mode,the RX led will fash slowly -bind complete.
+/*
+Bind CLI procedure
+Power-up FC normallymFrslyLed blinking slowly .Connect to configurator
+On cli pannel type "bind" and press enter and observe the Frsky led will come solid .
+start Tx in bind  mode,the RX led will fash slowly -bind complete.
+*/
 //
 //#define USE_EXTI
 #define FRSKY_TELEMETRY
@@ -85,15 +86,15 @@
 #define SPI1_MISO_PIN           RX_MISO_PIN
 #define SPI1_MOSI_PIN           RX_MOSI_PIN
 //
-#define PA_LNA//If there is CC2500 with amplifier chip used her SE4311
+#define PA_LNA//If there is CC2500 with amplifier chip,here is used SE4311
 #define DIVERSITY
 //#define SWAMPING
 #if defined PA_LNA
-#define TX_EN_PIN              PB1//
-#define RX_EN_PIN              PB2//
+#define TX_EN_PIN              PB1
+#define RX_EN_PIN              PB2
 #endif
 #if defined DIVERSITY
-#define ANT_SEL_PIN            PB11//
+#define ANT_SEL_PIN            PB11
 #endif
 
 
@@ -104,7 +105,6 @@
 #define VBAT_ADC_PIN            PA0// ADC1
 //#define EXTERNAL1_ADC_PIN       PA1//A2
 #define CURRENT_METER_ADC_PIN   PA1
-//#define RSSI_ADC_PIN            PA1//11
 //
 #define USE_RX_FRSKYD
 #define RX_SPI_DEFAULT_PROTOCOL FRSKYD
@@ -115,7 +115,7 @@
 
 //
 #undef USE_SERVOS//
-#undef TELEMETRY
+#undef TELEMETRY // to remove comment  if using HUB
 #undef TELEMETRY_CRSF
 #undef TELEMETRY_SRXL
 #undef TELEMETRY_JETIEXBUS
@@ -152,10 +152,8 @@
 
 #define DEFAULT_FEATURES        FEATURE_MOTOR_STOP
 #define USE_QUAD_MIXER_ONLY
-//#define SKIP_SERIAL_PASSTHROUGH//was before
-#define USE_SERIAL_4WAY_BLHELI_INTERFACE//added now
-// Number of available PWM outputs
-//#define MAX_PWM_OUTPUT_PORTS    4
+//#define SKIP_SERIAL_PASSTHROUGH
+#define USE_SERIAL_4WAY_BLHELI_INTERFACE
 // IO - assuming all IOs on 48pin package TODO
 #define TARGET_IO_PORTA         0xffff
 #define TARGET_IO_PORTB         0xffff
