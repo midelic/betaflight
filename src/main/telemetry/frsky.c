@@ -128,22 +128,29 @@ extern int16_t telemTemperature1; // FIXME dependency on mw.c
 
 static uint32_t lastCycleTime = 0;
 static uint8_t cycleNum = 0;
+#if defined HUB
+extern uint8_t srx_data[64];
+extern uint8_t hub_index;
+#endif
+
 static void sendDataHead(uint8_t id)
 {
 	#if defined HUB
 	srx_data[hub_index++]=PROTOCOL_HEADER;
     srx_data[hub_index++]=id;
-	#endif
-    serialWrite(frskyPort, PROTOCOL_HEADER);
+	#else
+	serialWrite(frskyPort, PROTOCOL_HEADER);
     serialWrite(frskyPort, id);	
+	#endif
 }
 
 static void sendTelemetryTail(void)
 {
 	#if defined HUB
 	srx_data[hub_index++]=PROTOCOL_TAIL;
+	#else
+	 serialWrite(frskyPort, PROTOCOL_TAIL);
 	#endif	
-    serialWrite(frskyPort, PROTOCOL_TAIL);
 }
 
 static void serializeFrsky(uint8_t data)
@@ -153,21 +160,25 @@ static void serializeFrsky(uint8_t data)
 		#if defined HUB
 		srx_data[hub_index++]=0x5D;
 		srx_data[hub_index++]=0x3E;
-		#endif	
-        serialWrite(frskyPort, 0x5d);
+		#else
+	    serialWrite(frskyPort, 0x5d);
         serialWrite(frskyPort, 0x3e);	
+		#endif	
     } else if (data == 0x5d) {
 		#if defined HUB
 		srx_data[hub_index++]=0x5D;
 		srx_data[hub_index++]=0x3E;
-		#endif	
-        serialWrite(frskyPort, 0x5d);
+		#else
+		serialWrite(frskyPort, 0x5d);
         serialWrite(frskyPort, 0x3d);
+		#endif	
+
     } else{
 	    #if defined HUB
 		srx_data[hub_index++]=data;
+		#else
+		serialWrite(frskyPort, data);
 		#endif
-        serialWrite(frskyPort, data);
 		}
 }
 
@@ -531,7 +542,9 @@ void handleFrSkyTelemetry(rxConfig_t *rxConfig, uint16_t deadband3d_throttle)
     lastCycleTime = now;
 
     cycleNum++;
+	#if defined HUB
    hub_index=0;
+	#endif
     // Sent every 125ms
     sendAccel();
     sendVario();

@@ -4,10 +4,11 @@ FLASH_SIZE  = 128
 TARGET_SRC = \
             drivers/accgyro_mpu.c \
             drivers/accgyro_mpu6050.c \
+			drivers/barometer_ms5611.c \
             drivers/compass_hmc5883l.c \
-			drivers/cc2500.c\
-            blackbox/blackbox.c \
-            blackbox/blackbox_io.c \
-            telemetry/telemetry.c \
-			rx/frskyD_rx.c\
+		    drivers/c2500.c \
+			rx/frskyD_rx.c \
+			telemetry/telemetry.c \
+			telemetry/frsky.c \
+            sensors/barometer.c \
 

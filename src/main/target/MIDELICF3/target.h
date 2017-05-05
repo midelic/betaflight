@@ -36,6 +36,9 @@
 #define USE_ACC_MPU6050
 #define ACC_MPU6050_ALIGN       CW270_DEG
 
+//#define BARO
+//#define USE_BARO_MS5611
+
 #define USE_UART1//PA9;PA10(30;31)
 #define USE_UART2//PA2;PA3(12;13)
 //#define USE_UART3//PA10;PA11(12;13)

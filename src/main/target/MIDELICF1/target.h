@@ -41,6 +41,12 @@
 #define ACC
 #define USE_ACC_MPU6050
 
+#define BARO
+#define USE_BARO_MS5611
+//#define USE_BARO_BMP085
+//#define USE_BARO_BMP280
+
+
 #define USE_UART1//PA9;PA10(30;31)
 #define USE_UART2//PA2;PA3(12;13)
 
@@ -64,12 +70,15 @@
 #define RX_SPI_INSTANCE         SPI2
 
 #define FRSKY_BIND//bind via CLI serial interface
-//start RX normally 
-//on cli pannel type "bind" and press enter the Frsky led will stay on.
-//start Tx in bind  mode,the RX led will fash slowly -bind complete.
+/*
+Bind CLI procedure
+Power-up FC normallymFrslyLed blinking slowly .Connect to configurator
+On cli pannel type "bind" and press enter pbserve the Frsky led will come solid.
+start Tx in bind  mode,the RX led will fash slowly -bind complete.
+*/
 //#define USE_EXTI
 #define FRSKY_TELEMETRY
-//#define HUB
+#define HUB
 //PINOUT
 #define RX_NSS_GPIO_CLK_PERIPHERAL   RCC_APB2Periph_GPIOB
 #define RX_NSS_PIN              PB12//25
@@ -88,8 +97,9 @@
 //
 #define PA_LNA//If there is CC2500 with amplifier chip
 #define DIVERSITY
-//#define SWAMPING
+
 #if defined PA_LNA
+//#define SWAMPING	
 #define TX_EN_PIN              PA0//10
 #define RX_EN_PIN              PA1//11
 #endif
@@ -110,24 +120,25 @@
 //#define USE_RX_FRSKYX
 //#define RX_SPI_DEFAULT_PROTOCOL FRSKYX
 #define DEFAULT_RX_FEATURE      FEATURE_RX_SPI
-//#define TELEMETRY
+
 #if defined MBRAIN	
 #define TARGET_CONFIG
 #define BRUSHED_MOTORS
 #define DEFAULT_FEATURES FEATURE_MOTOR_STOP
 #define SKIP_SERIAL_PASSTHROUGH
 #define USE_QUAD_MIXER_ONLY
-#if defined PA_LNA || defined DIVERSITY || SWAMPING
+#if defined PA_LNA
 #undef 	PA_LNA//No PA_LNA
 #undef DIVERSITY
 #undef SWAMPING
 #endif
 #endif
-//
-#undef USE_SERVOS
+
+#undef USE_SERVOS//has errors
+//#undef USE_CLI//good
 #undef BLACKBOX
-#undef TELEMETRY
-#undef GPS
+//#undef TELEMETRY
+//#undef BARO
 //
 #ifdef USE_PWM
 #undef USE_PWM
@@ -148,6 +159,10 @@
 #if !defined(BRUSHED_MOTORS)
 #define USE_SERIAL_4WAY_BLHELI_INTERFACE
 #endif
+#undef TELEMETRY_HOTT
+#undef TELEMETRY_LTM
+#undef TELEMETRY_SMARTPORT
+
 //MOTORS
 //PA8;PA11;PB6;PB7;PB8;PB9
 #else
