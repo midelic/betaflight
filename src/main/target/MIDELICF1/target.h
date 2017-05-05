@@ -41,8 +41,8 @@
 #define ACC
 #define USE_ACC_MPU6050
 
-#define BARO
-#define USE_BARO_MS5611
+//#define BARO
+//#define USE_BARO_MS5611
 //#define USE_BARO_BMP085
 //#define USE_BARO_BMP280
 
@@ -173,7 +173,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 
 #endif//END USE_RX_CC2500
 
-#define DEFAULT_FEATURES        FEATURE_MOTOR_STOP
+#define DEFAULT_FEATURES        FEATURE_MOTOR_STOP | FEATURE_TELEMETRY //| FEATURE_VBAT
 
 // Number of available PWM outputs
 //#define MAX_PWM_OUTPUT_PORTS    4
