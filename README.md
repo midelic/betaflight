@@ -5,9 +5,12 @@
 ## IMPORTANT
 
 **Main  contribution of this fork is that the FRSKY RX compatible code was added to betaflight core**
+
 **No more PPM ,RX-PWM ,SBUS ot other serial RX.No more aditional mcu chip added to the FC hardware.**
+
 **One CC2500 module connected to STM32 mcu which communicate via spi.Features now full telemetry**
 **The target setup is set in target.h.There are two target folders one for F1 chip MIDELICF1 and another MIDELICF3 for F3 chip**
+
 
 **Another feature is binding via CLI panel.**
 **Bind CLI procedure**
@@ -15,13 +18,19 @@
 **On cli pannel type "bind" and press enter observe the Frsky led will come solid.**
 **Start Tx in bind  mode,the RX led will fash slowly - bind complete.**
 
+In the photo below there is the prototype of **MIDELICF3** board
 
 <img src="Images/MIDELICF3.png" width="700" height="600"/>
 
-If somebody interesetd about these boards you can ask here.
+If somebody interested about these boards you can ask here.
 
 ericfr@m-ae.com
 
+or 
+
+[here](https://www.rcgroups.com/forums/showthread.php?2883080-MIDELICF3-new-Flight-controller-board#post37456977)
+
+**********************************************************************************************************************************
 Clean-code version of baseflight flight-controller - flight controllers are used to fly multi-rotor craft and fixed wing craft.
 
 This fork differs from baseflight in that it attempts to use modern software development practices which result in:
