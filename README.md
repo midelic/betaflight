@@ -10,7 +10,9 @@
 **The target setup is set in target.h.There are two target folders one for F1 chip MIDELICF1 and another MIDELICF3 for F3 chip**
 
 **Another feature is binding via CLI panel.**
+**Bind CLI procedure**
 **Power-up FC normallymFrslyLed blinking slowly .Connect to configurator**
+**On cli pannel type "bind" and press enter observe the Frsky led will come solid.**
 **Start Tx in bind  mode,the RX led will fash slowly - bind complete.**
 
 
