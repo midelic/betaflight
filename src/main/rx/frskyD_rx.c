@@ -105,7 +105,7 @@ static uint8_t *storage_ptr ;
 bool bind_status;
 
 #ifdef FRSKY_TELEMETRY
-static uint8_t frame[17];
+static uint8_t frame[20];
 static int16_t RSSI_dBm;
 static uint8_t telemetry_id;
 static uint8_t telemetryRX;
