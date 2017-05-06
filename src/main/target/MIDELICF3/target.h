@@ -89,7 +89,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #define SPI1_MISO_PIN           RX_MISO_PIN
 #define SPI1_MOSI_PIN           RX_MOSI_PIN
 //
-#define PA_LNA//If there is CC2500 with amplifier chip,here is used SE4311
+#define PA_LNA//If there is CC2500 with amplifier chip
 #define DIVERSITY
 //#define SWAMPING
 #if defined PA_LNA
