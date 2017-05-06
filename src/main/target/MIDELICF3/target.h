@@ -73,7 +73,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 //
 //#define USE_EXTI
 #define FRSKY_TELEMETRY
-//#define HUB
+#define HUB
 //PINOUT
 #define RX_NSS_GPIO_CLK_PERIPHERAL   RCC_APB2Periph_GPIOA
 #define RX_NSS_PIN              PA4 
