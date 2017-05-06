@@ -9,6 +9,11 @@
 **One CC2500 module connected to STM32 mcu which communicate via spi.Feature RSSI and VBAT telemetry**
 **The target setup is set in target.h.There are two folders one for F1 chip MIDELICF1 and another MIDELICF3 for F3 chip**
 
+<img src="Images/MIDELICF3.png" width="700" height="600"/>
+
+If somebody interesetd about these boards you can ask here.
+
+ericfr@m-ae.com
 
 Clean-code version of baseflight flight-controller - flight controllers are used to fly multi-rotor craft and fixed wing craft.
 
