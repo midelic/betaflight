@@ -4,10 +4,15 @@
 
 ## IMPORTANT
 
-**Main  contribution of this fork is the FRSKY RX compatible code added to betaflight core**
+**Main  contribution of this fork is that the FRSKY RX compatible code was added to betaflight core**
 **No more PPM ,RX-PWM ,SBUS ot other serial RX.No more aditional mcu chip added to the FC hardware.**
 **One CC2500 module connected to STM32 mcu which communicate via spi.Feature RSSI and VBAT telemetry**
-**The target setup is set in target.h.There are two folders one for F1 chip MIDELICF1 and another MIDELICF3 for F3 chip**
+**The target setup is set in target.h.There are two target folders one for F1 chip MIDELICF1 and another MIDELICF3 for F3 chip**
+
+**Another feature is binding via CLI panel.**
+**Power-up FC normallymFrslyLed blinking slowly .Connect to configurator**
+**Start Tx in bind  mode,the RX led will fash slowly - bind complete.**
+
 
 <img src="Images/MIDELICF3.png" width="700" height="600"/>
 
