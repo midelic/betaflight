@@ -167,7 +167,7 @@ static void serializeFrsky(uint8_t data)
     } else if (data == 0x5d) {
 		#if defined HUB
 		srx_data[hub_index++]=0x5D;
-		srx_data[hub_index++]=0x3E;
+		srx_data[hub_index++]=0x3D;
 		#else
 		serialWrite(frskyPort, 0x5d);
         serialWrite(frskyPort, 0x3d);
