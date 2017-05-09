@@ -18,7 +18,7 @@
 **On cli pannel type "bind" and press enter observe the Frsky led will come solid.**
 **Start Tx in bind  mode,the RX led will fash slowly - bind complete.**
 
-In the photo below there is the prototype of **MIDELICF3** board
+In the photo below there is the prototype of **MIDELICF3** board Frsky-D8 compatible with antenna diversity
 
 <img src="Images/MIDELICF3.png" width="700" height="600"/>
 

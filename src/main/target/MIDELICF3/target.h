@@ -76,7 +76,6 @@ Power-up FC normallymFrslyLed blinking slowly .Connect to configurator
 On cli pannel type "bind" and press enter and observe the Frsky led will come solid .
 start Tx in bind  mode,the RX led will fash slowly -bind complete.
 */
-//
 //#define USE_EXTI
 #define FRSKY_TELEMETRY
 #define HUB
@@ -94,8 +93,8 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #define SPI1_MISO_PIN           RX_MISO_PIN
 #define SPI1_MOSI_PIN           RX_MOSI_PIN
 //
-#define PA_LNA//If there is CC2500 with amplifier chip
-#define DIVERSITY
+#define PA_LNA//if there is amplifier chip
+#define DIVERSITY//antenna switch 
 //#define SWAMPING
 #if defined PA_LNA
 #define TX_EN_PIN              PB1
@@ -104,8 +103,6 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #if defined DIVERSITY
 #define ANT_SEL_PIN            PB11
 #endif
-
-
 
 //#define BOARD_HAS_VOLTAGE_DIVIDER
 #define USE_ADC
