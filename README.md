@@ -14,7 +14,7 @@
 
 **Another feature is binding via CLI panel.**
 **Bind CLI procedure**
-**Power-up FC normallymFrslyLed blinking slowly .Connect to configurator**
+**Power-up FC normally,FrskyLed blinking slowly .Connect to configurator**
 **On cli pannel type "bind" and press enter observe the Frsky led will come solid.**
 **Start Tx in bind  mode,the RX led will fash slowly - bind complete.**
 

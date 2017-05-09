@@ -44,7 +44,7 @@
 #include "rx/nrf24_inav.h"
 //
 #include "rx/frskyD_rx.h"
-
+//#include "rx/frskyX_rx.h"
 
 uint16_t rxSpiRcData[MAX_SUPPORTED_RC_CHANNEL_COUNT];
 STATIC_UNIT_TESTED uint8_t rxSpiPayload[RX_SPI_MAX_PAYLOAD_SIZE];
@@ -121,7 +121,6 @@ STATIC_UNIT_TESTED bool rxSpiSetProtocol(rx_spi_protocol_e protocol)
         protocolDataReceived =frskyX_Rx_DataReceived;
         protocolSetRcDataFromPayload = frskyX_Rx_SetRCdata;
         break;
-
 #endif
 #ifdef USE_RX_FRSKYD
     case FRSKYD:
@@ -129,7 +128,6 @@ STATIC_UNIT_TESTED bool rxSpiSetProtocol(rx_spi_protocol_e protocol)
         protocolDataReceived =frskyD_Rx_DataReceived;
         protocolSetRcDataFromPayload = frskyD_Rx_SetRCdata;
         break;
-
 #endif
 
 

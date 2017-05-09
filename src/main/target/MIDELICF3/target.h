@@ -60,6 +60,12 @@
 #define USE_RX_CC2500
 
 #if defined USE_RX_CC2500//START USE_RX_CC2500
+#if defined MIDELICF3V2
+#define FRSKY_LED_PIN         PB4	
+#elif defined MIDELICF3
+#define FRSKY_LED_PIN         PA8
+#endif
+	
 #define USE_RX_SPI
 #define RX_SPI_INSTANCE         SPI1
 
@@ -82,7 +88,6 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #define RX_MOSI_PIN             PA7
 #define BIND_PIN                  PC13
 #define GDO_0_PIN               PB0
-#define FRSKY_LED_PIN         PA8
 //
 #define SPI1_NSS_PIN            RX_NSS_PIN
 #define SPI1_SCK_PIN            RX_SCK_PIN
