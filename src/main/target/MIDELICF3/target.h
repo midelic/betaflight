@@ -21,7 +21,9 @@
 //#define USE_HARDWARE_REVISION_DETECTION
 //#define TARGET_BUS_INIT
 
-#define LED0                    PB3
+#define LED0                    PA13//V1 production board
+//#define LED0                    PB3//V1 prototype board
+
 //#define LED1                    PF0
 //#define LED2                    PC15
 
