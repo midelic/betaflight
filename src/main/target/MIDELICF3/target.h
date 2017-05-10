@@ -122,6 +122,9 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #undef TELEMETRY_CRSF
 #undef TELEMETRY_SRXL
 #undef TELEMETRY_JETIEXBUS
+#undef TELEMETRY_HOTT
+#undef TELEMETRY_LTM
+#undef TELEMETRY_SMARTPORT
 //
 #ifdef USE_PWM
 #undef USE_PWM
