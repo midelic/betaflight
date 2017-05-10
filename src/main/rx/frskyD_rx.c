@@ -178,7 +178,7 @@ static void telemetry_build_frame(uint8_t *packet){
 #ifdef USE_ADC
 	if(feature(FEATURE_VBAT)){	
 		v1 =vbat;
-		v2=amperage;
+		v2=0;
 	}
 	else
 	v1=0;
