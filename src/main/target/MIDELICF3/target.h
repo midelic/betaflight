@@ -24,9 +24,6 @@
 #define LED0                    PA13//V1 production board
 //#define LED0                    PB3//V1 prototype board
 
-//#define LED1                    PF0
-//#define LED2                    PC15
-
 //#undef BEEPER
 #define BEEPER                  PC14
 //#define BEEPER_INVERTED
@@ -43,7 +40,7 @@
 
 #define USE_UART1//PA9;PA10(30;31)
 #define USE_UART2//PA2;PA3(12;13)
-//#define USE_UART3//PA10;PA11(12;13)
+//#define USE_UART3//PB10;PB11
 
 #define SERIAL_PORT_COUNT       2
 
@@ -118,11 +115,10 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 //#define USE_RX_FRSKYX
 //#define RX_SPI_DEFAULT_PROTOCOL FRSKYX
 #define DEFAULT_RX_FEATURE      FEATURE_RX_SPI
-//#define TELEMETRY
 
 //
 #undef USE_SERVOS//
-#undef TELEMETRY // to remove comment  if using HUB
+//#undef TELEMETRY
 #undef TELEMETRY_CRSF
 #undef TELEMETRY_SRXL
 #undef TELEMETRY_JETIEXBUS
