@@ -105,6 +105,7 @@ uint8_t cliMode = 0;
 #include "config/config_master.h"
 #include "config/feature.h"
 
+
 extern uint16_t cycleTime; // FIXME dependency on mw.c
 
 void gpsEnablePassthrough(serialPort_t *gpsPassthroughPort);
@@ -198,6 +199,14 @@ static void cliSdInfo(char *cmdline);
 #ifdef BEEPER
 static void cliBeeper(char *cmdline);
 #endif
+
+#ifdef FRSKY_BIND
+bool bind_status;
+void cliBind(char *cmdline){
+UNUSED(cmdline);
+bind_status = true;	
+}
+#endif	
 
 // buffer
 static char cliBuffer[48];
@@ -381,9 +390,15 @@ const clicmd_t cmdTable[] = {
     CLI_COMMAND_DEF("vtx", "vtx channels on switch", NULL, cliVtx),
 #endif
     CLI_COMMAND_DEF("name", "Name of craft", NULL, cliName),
+	
+#ifdef FRSKY_BIND
+	CLI_COMMAND_DEF("bind", NULL, NULL, cliBind),
+#endif	
+	
 };
 #define CMD_COUNT (sizeof(cmdTable) / sizeof(clicmd_t))
 
+	
 static const char * const lookupTableOffOn[] = {
     "OFF", "ON"
 };
@@ -459,7 +474,9 @@ static const char * const lookupTableRxSpi[] = {
     "CX10",
     "CX10A",
     "H8_3D",
-    "INAV"
+    "INAV",
+	"FRSKYX"
+	"FRSKYD"
 };
 #endif
 
