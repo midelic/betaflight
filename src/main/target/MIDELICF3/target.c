@@ -28,8 +28,8 @@
 const timerHardware_t timerHardware[USABLE_TIMER_CHANNEL_COUNT] = {
     DEF_TIM(TIM15, CH1, PA2,  TIM_USE_MOTOR,             1), // PWM1 - PA2
     DEF_TIM(TIM15, CH2, PA3,  TIM_USE_MOTOR,             1), // PWM2 - PA3
-	DEF_TIM(TIM4,  CH3, PA13, TIM_USE_MOTOR,             1), // PWM3 - PA12
-	DEF_TIM(TIM1,  CH1, PA8, TIM_USE_MOTOR,             1), // PWM4 - PA11
+	DEF_TIM(TIM4,  CH3, PA13, TIM_USE_MOTOR,             1), // PWM3 - PA13
+	DEF_TIM(TIM1,  CH1, PA8, TIM_USE_MOTOR,             1), // PWM4 - PA8
     DEF_TIM(TIM16,  CH1, PB8,  TIM_USE_MOTOR,             1), // PWM5 - PB8
     DEF_TIM(TIM4,  CH4, PB9,  TIM_USE_MOTOR,             1), // PWM6 - PB9	
     DEF_TIM(TIM3,  CH2, PB5,  TIM_USE_LED,               1), // GPIO_TIMER / LED_STRIP

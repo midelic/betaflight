@@ -22,7 +22,6 @@
 //#define TARGET_BUS_INIT
 
 #define LED0                    PA13//V1 production board
-//#define LED0                    PB3//V1 prototype board
 
 //#undef BEEPER
 #define BEEPER                  PC14
@@ -164,11 +163,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #define TARGET_IO_PORTA         0xffff
 #define TARGET_IO_PORTB         0xffff
 #define TARGET_IO_PORTC         (BIT(13)|BIT(14)|BIT(15))
-//#define TARGET_IO_PORTF         (BIT(0)|BIT(1)|BIT(3)|BIT(4))
 #define TARGET_IO_PORTF         (BIT(0)|BIT(1)|BIT(4))
-//#define USABLE_TIMER_CHANNEL_COUNT 14
-//#define USED_TIMERS             (TIM_N(1) | TIM_N(2) | TIM_N(3) | TIM_N(4))
-
 #define USABLE_TIMER_CHANNEL_COUNT 17
 #define USED_TIMERS             ( TIM_N(1) | TIM_N(2) | TIM_N(3) | TIM_N(4) | TIM_N(15) | TIM_N(16) | TIM_N(17) )
 

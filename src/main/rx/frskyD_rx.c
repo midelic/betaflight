@@ -66,11 +66,11 @@ Version for cleanflight/betaflight FC
 #if defined STM32F10X_MD
 #define FLASH_PAGE_SIZE   ((uint16_t)0x400)//1K-1024
 #define FLASH_TO_RESERVE_FOR_CONFIG  ((uint16_t)0x800)
-#define FRSKYX_FLASH ((uint16_t)0x400)
+#define FRSKYD_FLASH ((uint16_t)0x400)
 #else
 #define FLASH_PAGE_SIZE   ((uint16_t)0x800)//2K-2048
 #define FLASH_TO_RESERVE_FOR_CONFIG  ((uint16_t)0x1000)
-#define FRSKYX_FLASH ((uint16_t)0x400)
+#define FRSKYD_FLASH ((uint16_t)0x400)
 #endif
 #define FLASH_PAGE_COUNT 128
 #define CONFIG_START_FLASH_ADDRESS (0x08000000 + (uint32_t)((FLASH_PAGE_SIZE * FLASH_PAGE_COUNT) - FLASH_TO_RESERVE_FOR_CONFIG))
@@ -471,7 +471,7 @@ static void binding(uint8_t *packet)
 
 {
 	#ifndef AUTOBIND
-	uint32_t address=CONFIG_START_FLASH_ADDRESS-FRSKYX_FLASH;
+	uint32_t address=CONFIG_START_FLASH_ADDRESS-FRSKYD_FLASH;
 	#else
 	jumper=1;
 	#endif
