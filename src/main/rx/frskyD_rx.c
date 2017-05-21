@@ -116,7 +116,7 @@ static uint32_t time_t;
 #if defined HUB
 #define MAX_SERIAL_BYTES	64
 uint8_t hub_index;
-uint8_t idxx=0;
+uint8_t idxx;
 uint8_t idx_ok = 0;
 uint8_t telemetry_expected_id = 0;
 uint8_t srx_data[MAX_SERIAL_BYTES];//buffer for telemetry serial data

@@ -131,6 +131,7 @@ static uint8_t cycleNum = 0;
 #if defined HUB
 extern uint8_t srx_data[64];
 extern uint8_t hub_index;
+extern uint8_t idxx;
 #endif
 
 static void sendDataHead(uint8_t id)
@@ -544,6 +545,7 @@ void handleFrSkyTelemetry(rxConfig_t *rxConfig, uint16_t deadband3d_throttle)
     cycleNum++;
 	#if defined HUB
    hub_index=0;
+   idxx=0;
 	#endif
     // Sent every 125ms
     sendAccel();
