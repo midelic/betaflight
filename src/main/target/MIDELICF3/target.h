@@ -21,8 +21,13 @@
 //#define USE_HARDWARE_REVISION_DETECTION
 //#define TARGET_BUS_INIT
 
+#if defined MIDELICF3V2
+#define LED0                    PB3
+#else
 #define LED0                    PA13//V1 production board
 //#define LED0                    PB3//V1 prototype board to be changed when used prototype board
+#endif
+
 
 //#undef BEEPER
 #define BEEPER                  PC14
