@@ -56,7 +56,14 @@
 //#define UART3_RX_PIN            PB11 
 
 #define USE_I2C
-#define I2C_DEVICE             (I2CDEV_1)//PB6;PB7(42;43)
+#define I2C_DEVICE             (I2CDEV_1)//PB6;PB7(42;43) or PA14;PA15
+
+#if defined MIDELICF3V2
+#define I2C1_SCL                PA15
+#define I2C1_SDA                PA14
+#undef USE_UART2
+#endif
+
 //
 #define USE_SPI
 #define USE_SPI_DEVICE_1
