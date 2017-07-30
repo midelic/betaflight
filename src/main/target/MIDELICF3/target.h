@@ -44,8 +44,6 @@
 #else 
 #define USE_GYRO_MPU6050
 #define GYRO_MPU6050_ALIGN      CW270_DEG
-#define USE_ACC_MPU6050
-#define ACC_MPU6050_ALIGN       CW270_DEG
 #endif
 
 #define ACC
@@ -54,8 +52,6 @@
 #define USE_ACC_SPI_MPU6000
 #define ACC_MPU6000_ALIGN       CW270_DEG
 #else 
-#define USE_GYRO_MPU6050
-#define GYRO_MPU6050_ALIGN      CW270_DEG
 #define USE_ACC_MPU6050
 #define ACC_MPU6050_ALIGN       CW270_DEG
 #endif
@@ -155,7 +151,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #define ANT_SEL_PIN            PB11
 #endif
 
-#if defined MIDELICF3V2
+#if defined MIDELICF3V2 || defined(MIDELICF3V3)
 #define FRSKY_LED_PIN         PB4	
 #elif defined MIDELICF3
 #define FRSKY_LED_PIN         PA8
