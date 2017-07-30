@@ -17,11 +17,15 @@
 
 #pragma once
 
-#define TARGET_BOARD_IDENTIFIER "MIDF3"
-//#define USE_HARDWARE_REVISION_DETECTION
-//#define TARGET_BUS_INIT
-
 #if defined MIDELICF3V2 
+#define TARGET_BOARD_IDENTIFIER "MIF3V2"
+#elif defined MIDELICF3V3
+#define TARGET_BOARD_IDENTIFIER "MIF3V3"
+#else 
+#define TARGET_BOARD_IDENTIFIER "MIF3"
+#endif
+
+#if defined(MIDELICF3V2) || defined(MIDELICF3V3)
 #define LED0                    PB3
 #else
 //V1 production board	
@@ -30,16 +34,34 @@
 //#define LED0                    PB3
 #endif
 
-
 #define BEEPER                  PC14
 
 #define GYRO
+#if defined MIDELICF3V3//Use acc/gyro spi comm.
+#define USE_GYRO_MPU6000
+#define USE_GYRO_SPI_MPU6000
+#define GYRO_MPU6000_ALIGN      CW270_DEG
+#else 
 #define USE_GYRO_MPU6050
 #define GYRO_MPU6050_ALIGN      CW270_DEG
-#define ACC
 #define USE_ACC_MPU6050
 #define ACC_MPU6050_ALIGN       CW270_DEG
+#endif
 
+#define ACC
+#if defined MIDELICF3V3//Use acc/gyro spi comm.
+#define USE_ACC_MPU6000
+#define USE_ACC_SPI_MPU6000
+#define ACC_MPU6000_ALIGN       CW270_DEG
+#else 
+#define USE_GYRO_MPU6050
+#define GYRO_MPU6050_ALIGN      CW270_DEG
+#define USE_ACC_MPU6050
+#define ACC_MPU6050_ALIGN       CW270_DEG
+#endif
+
+#define MPU6000_CS_PIN          SPI2_NSS_PIN
+#define MPU6000_SPI_INSTANCE    SPI2
 
 #define USE_UART1
 #define UART1_TX_PIN            PA9
@@ -50,11 +72,11 @@
 
 #define SERIAL_PORT_COUNT       2
 
-#define BINDPLUG_PIN            PC13
-
+#ifndef MIDELICF3V3
 #define USE_I2C
 #define USE_I2C_DEVICE_1
 #define I2C_DEVICE             (I2CDEV_1)//PB6;PB7(42;43) or PA14;PA15
+#endif
 
 #if defined MIDELICF3V2
 #define I2C1_SCL                PA15
@@ -76,12 +98,13 @@
 #define SPI2_MISO_PIN          PB14
 #define SPI2_MOSI_PIN          PB15
 
-
+#ifndef MIDELICF3V3
 #define USE_FLASHFS
 #define USE_FLASH_M25P16
 #define M25P16_SPI_INSTANCE     SPI2
 #define ENABLE_BLACKBOX_LOGGING_ON_SPIFLASH_BY_DEFAULT
 #define M25P16_CS_PIN           SPI2_NSS_PIN
+#endif
 
 #define USE_ADC
 #define ADC_INSTANCE                    ADC1
@@ -137,6 +160,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #elif defined MIDELICF3
 #define FRSKY_LED_PIN         PA8
 #endif
+#define BINDPLUG_PIN            PC13
 
 #undef USE_SERVOS//
 #undef TELEMETRY_CRSF
@@ -145,6 +169,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #undef TELEMETRY_HOTT
 #undef TELEMETRY_LTM
 #undef TELEMETRY_SMARTPORT
+
 //
 #ifdef USE_PWM
 #undef USE_PWM
@@ -155,9 +180,8 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #ifdef SERIAL_RX
 #undef SERIAL_RX
 #endif
-
 //MOTORS
-//PA2;PA3;PA12;PA11;PB8;PB9
+//PA2;PA3;PA12;PA11;PB8;PB9-MIDELICF3
 #else
 #define SPEKTRUM_BIND
 #define BIND_PIN                PA14	
@@ -175,7 +199,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #define TARGET_IO_PORTC         (BIT(13)|BIT(14)|BIT(15))
 #define TARGET_IO_PORTF         (BIT(0)|BIT(1)|BIT(4))
 #define USABLE_TIMER_CHANNEL_COUNT 7
-#if defined(MIDELICF3V2)
+#if defined(MIDELICF3V2) || defined(MIDELICF3V3)
 #define USED_TIMERS             (TIM_N(1) | TIM_N(3) | TIM_N(4) | TIM_N(15) | TIM_N(16))
 #else
 #define USED_TIMERS             (TIM_N(3) | TIM_N(4) | TIM_N(15))
