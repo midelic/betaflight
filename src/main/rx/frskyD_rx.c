@@ -666,7 +666,7 @@ void frskyD_Rx_Setup(rx_spi_protocol_e protocol)
 	UNUSED(protocol);
 	//gpio init here
 	GdoPin = IOGetByTag(IO_TAG(GDO_0_PIN));
-	BindPin = IOGetByTag(IO_TAG(BIND_PIN));
+	BindPin = IOGetByTag(IO_TAG(BINDPLUG_PIN));
 	FrskyLedPin=IOGetByTag(IO_TAG(FRSKY_LED_PIN));
 	#if defined PA_LNA
 	RxEnPin	= IOGetByTag(IO_TAG(RX_EN_PIN));
