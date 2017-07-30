@@ -24,7 +24,7 @@
 #include "drivers/timer.h"
 #include "drivers/timer_def.h"
 
-#if defined MIDELICF3V2//MOTORS :PA2;PA3;PA13;PA8;PB8;PB9
+#if defined(MIDELICF3V2) || defined(MIDELICF3V3)//MOTORS :PA2;PA3;PA13;PA8;PB8;PB9
 const timerHardware_t timerHardware[USABLE_TIMER_CHANNEL_COUNT] = {
     DEF_TIM(TIM15, CH1, PA2,  TIM_USE_MOTOR,             1), // PWM1 - PA2
     DEF_TIM(TIM15, CH2, PA3,  TIM_USE_MOTOR,             1), // PWM2 - PA3
