@@ -26,6 +26,7 @@
 #endif
 
 #if defined(MIDELICF3V2) || defined(MIDELICF3V3)
+#define USE_VCP
 #define LED0                    PB3
 #else
 //V1 production board	
@@ -75,9 +76,9 @@
 #endif
 
 #if defined MIDELICF3V2
+#undef USE_UART2
 #define I2C1_SCL                PA15
 #define I2C1_SDA               PA14
-#undef USE_UART2
 #endif
 //
 #define USE_SPI

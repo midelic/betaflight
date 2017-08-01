@@ -392,7 +392,7 @@ const clicmd_t cmdTable[] = {
     CLI_COMMAND_DEF("name", "Name of craft", NULL, cliName),
 	
 #ifdef FRSKY_BIND
-	CLI_COMMAND_DEF("bind", NULL, NULL, cliBind),
+	CLI_COMMAND_DEF("frsky_bind", NULL, NULL, cliBind),
 #endif	
 	
 };
