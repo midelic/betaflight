@@ -28,16 +28,19 @@
 #if defined(MIDELICF3V2) || defined(MIDELICF3V3)
 #define USE_VCP
 #define LED0                    PB3
-#else
+#endif
+
+#if defined MIDELICF3
 //V1 production board	
-#define LED0                    PA13
+//#define LED0                    PA13
 //V1 prototype board
-//#define LED0                    PB3
+#define LED0                    PB3
 #endif
 
 #define BEEPER                  PC14
 
 #define GYRO
+
 #if defined MIDELICF3V3//Use acc/gyro spi comm.
 #define USE_GYRO_MPU6000
 #define USE_GYRO_SPI_MPU6000
@@ -48,6 +51,7 @@
 #endif
 
 #define ACC
+
 #if defined MIDELICF3V3//Use acc/gyro spi comm.
 #define USE_ACC_MPU6000
 #define USE_ACC_SPI_MPU6000
@@ -63,6 +67,7 @@
 #define USE_UART1
 #define UART1_TX_PIN            PA9
 #define UART1_RX_PIN            PA10
+
 #define USE_UART2
 #define UART2_TX_PIN            PA14
 #define UART2_RX_PIN            PA15
@@ -73,7 +78,7 @@
 #define USE_I2C
 #define USE_I2C_DEVICE_1
 #define I2C_DEVICE             (I2CDEV_1)//PB6;PB7(42;43) or PA14;PA15
-#endif
+#endif//All other versions use I2C
 
 #if defined MIDELICF3V2
 #undef USE_UART2
@@ -155,7 +160,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #if defined MIDELICF3V2 || defined(MIDELICF3V3)
 #define FRSKY_LED_PIN         PB4	
 #elif defined MIDELICF3
-#define FRSKY_LED_PIN         PA8
+#define FRSKY_LED_PIN         PA8//LED1
 #endif
 #define BINDPLUG_PIN            PC13
 
@@ -185,7 +190,7 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #define DEFAULT_RX_FEATURE      FEATURE_RX_PPM
 #endif//END USE_RX_CC2500
 
-#define DEFAULT_FEATURES        (FEATURE_MOTOR_STOP | FEATURE_AIRMODE | FEATURE_TELEMETRY)
+#define DEFAULT_FEATURES        (FEATURE_MOTOR_STOP | FEATURE_TELEMETRY)
 #define USE_QUAD_MIXER_ONLY
 #define USE_SERIAL_4WAY_BLHELI_INTERFACE
 #define USE_ESCSERIAL
