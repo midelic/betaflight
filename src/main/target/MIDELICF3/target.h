@@ -31,7 +31,7 @@
 #endif
 
 #if defined MIDELICF3
-//V1 production board	
+//V1 production board	for test
 //#define LED0                    PA13
 //V1 prototype board
 #define LED0                    PB3
@@ -39,6 +39,7 @@
 
 #define BEEPER                  PC14
 
+//Sensors
 #define GYRO
 
 #if defined MIDELICF3V3//Use acc/gyro spi comm.
@@ -74,6 +75,7 @@
 
 #define SERIAL_PORT_COUNT       2
 
+//I2C
 #ifndef MIDELICF3V3
 #define USE_I2C
 #define USE_I2C_DEVICE_1
@@ -85,7 +87,7 @@
 #define I2C1_SCL                PA15
 #define I2C1_SDA               PA14
 #endif
-//
+//SPI
 #define USE_SPI
 
 #define USE_SPI_DEVICE_1
@@ -100,14 +102,17 @@
 #define SPI2_MISO_PIN          PB14
 #define SPI2_MOSI_PIN          PB15
 
-#ifndef MIDELICF3V3
+//ONBOARD FLASH
 #define USE_FLASHFS
 #define USE_FLASH_M25P16
 #define M25P16_SPI_INSTANCE     SPI2
 #define ENABLE_BLACKBOX_LOGGING_ON_SPIFLASH_BY_DEFAULT
+#if defined MIDELICF3V2
 #define M25P16_CS_PIN           SPI2_NSS_PIN
+#else
+#define M25P16_CS_PIN           PB10
 #endif
-
+	
 #define USE_ADC
 #define ADC_INSTANCE                    ADC1
 #define VBAT_ADC_PIN                    PA0
@@ -184,10 +189,6 @@ start Tx in bind  mode,the RX led will fash slowly -bind complete.
 #endif
 //MOTORS
 //PA2;PA3;PA12;PA11;PB8;PB9-MIDELICF3
-#else
-#define SPEKTRUM_BIND
-#define BIND_PIN                PA14	
-#define DEFAULT_RX_FEATURE      FEATURE_RX_PPM
 #endif//END USE_RX_CC2500
 
 #define DEFAULT_FEATURES        (FEATURE_MOTOR_STOP | FEATURE_TELEMETRY)
