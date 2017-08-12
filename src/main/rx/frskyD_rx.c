@@ -55,12 +55,13 @@ Version for cleanflight/betaflight FC
 //
 #define  RX_EN_on {IOHi(IOGetByTag(IO_TAG(RX_EN_PIN)));}
 #define  RX_EN_off {IOLo(IOGetByTag(IO_TAG(RX_EN_PIN)));}
+#endif
 //
 #if defined DIVERSITY 
 #define ANT_SEL_on	{IOHi(IOGetByTag(IO_TAG(ANT_SEL_PIN)));}
 #define ANT_SEL_off {IOLo(IOGetByTag(IO_TAG(ANT_SEL_PIN)));}
 #endif	
-#endif
+
 
 
 #if defined STM32F10X_MD

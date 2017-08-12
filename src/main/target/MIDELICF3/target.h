@@ -43,9 +43,14 @@
 #define GYRO
 
 #if defined MIDELICF3V3//Use acc/gyro spi comm.
-#define USE_GYRO_MPU6000
-#define USE_GYRO_SPI_MPU6000
-#define GYRO_MPU6000_ALIGN      CW270_DEG
+//
+//#define USE_EXTI
+//#define MPU_INT_EXTI            PA13
+//#define USE_MPU_DATA_READY_SIGNAL
+//
+#define USE_GYRO_MPU6500
+#define USE_GYRO_SPI_MPU6500
+#define GYRO_MPU6500_ALIGN      CW270_DEG
 #else 
 #define USE_GYRO_MPU6050
 #define GYRO_MPU6050_ALIGN      CW270_DEG
@@ -54,16 +59,16 @@
 #define ACC
 
 #if defined MIDELICF3V3//Use acc/gyro spi comm.
-#define USE_ACC_MPU6000
-#define USE_ACC_SPI_MPU6000
-#define ACC_MPU6000_ALIGN       CW270_DEG
+#define USE_ACC_MPU6500
+#define USE_ACC_SPI_MPU6500
+#define ACC_MPU6500_ALIGN       CW270_DEG
 #else 
 #define USE_ACC_MPU6050
 #define ACC_MPU6050_ALIGN       CW270_DEG
 #endif
 
-#define MPU6000_CS_PIN          SPI2_NSS_PIN
-#define MPU6000_SPI_INSTANCE    SPI2
+#define MPU6500_CS_PIN          SPI2_NSS_PIN
+#define MPU6500_SPI_INSTANCE    SPI2
 
 #define USE_UART1
 #define UART1_TX_PIN            PA9
@@ -103,14 +108,15 @@
 #define SPI2_MOSI_PIN          PB15
 
 //ONBOARD FLASH
+#ifndef MIDELICF3V3
 #define USE_FLASHFS
 #define USE_FLASH_M25P16
 #define M25P16_SPI_INSTANCE     SPI2
 #define ENABLE_BLACKBOX_LOGGING_ON_SPIFLASH_BY_DEFAULT
-#if defined MIDELICF3V2
+//#if defined MIDELICF3V2
 #define M25P16_CS_PIN           SPI2_NSS_PIN
-#else
-#define M25P16_CS_PIN           PB10
+//#else
+//#define M25P16_CS_PIN           PB10
 #endif
 	
 #define USE_ADC
